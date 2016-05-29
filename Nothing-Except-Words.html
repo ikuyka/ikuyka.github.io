@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Nothing Except Words</title>
+  <!--saved from url=https://github.com/ikuyka/Wordbook-tool-->
+ <style>
+		#main {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+		}
+		
+		#main div,
+		#main textarea {
+			float: left;
+			outline:none;
+			overflow: hidden;
+		}
+		#main div{
+			height: 100%;
+		}
+		#main textarea{
+			width: 44%;
+			height:300px;
+			resize: none;
+		}
+		#input {
+			left: 0;
+		}
+		
+		#output {
+			left: 55%;
+		}
+		
+		#set {
+			width: 10%;
+			left: 45%;
+		}
+		#set input{
+			position:relative;
+			margin:10px;
+			left:50%;
+			margin-left:-40px;
+			width: 80px;
+			height: 80px;
+			background: #f9e;
+			text-align:center;
+			cursor:1s;
+			text-decoration:none;
+			line-height:80px;
+			color:#fff;
+			font-size:50px;
+			outline:none;
+			border:none;
+			display:block;
+		}
+	</style>
+	<script>
+	</script>
+</head>
+
+<body>
+	<h1>Nothing Except Words</h1>
+	<div id="main">
+	<form id="form1">
+		<textarea name="content" id="original" class="o" cols="80"  style="overflow-y:visible">
+		-----本页面IE不可使用-----
+
+11.absolute   ['æbsəlu:t]       绝对的，完全的
+original       [ə'rɪdʒɪn(ə)l; ɒ-]           n. 原件；原作；原物；原型 adj. 原始的；最初的；独创的；新颖
+的
+banner         ['bænə]       网幅广告, 旗帜广告, 横幅广告 (网络广告的主要形式, 一般使用GIF格式的图像文
+件, 可以使用静态图形, 也可用多帧图像拼接为动画图像)
+alpha——透明度，半透明
+活动的，激活的，<a>标记的一个伪类 active      ['æktiv]//目前单词在右不支持
+//&gt;&gt;处理文本
+//C&gt;全选并复制处理后文本（只有Chrome可使用）
+//&lt;D清空原始文本
+		</textarea>
+	</form>
+	<div id="set">
+		<input type="button" id="submit" class="btn" value="&gt;&gt;"/>
+		<input type="button" id="sacopy" data-copytarget="#result" class="btn" value="C&gt;"/>
+		<!-- <input type="button" id="selectAll" class="btn" value="A&gt;"/> -->
+		<input type="button" id="dele" class="btn" value="&lt;D"/>	
+	</div>
+	<form id="form2"><textarea name="content" id="result" class="o" cols="80" 
+	style="overflow-y:visible"></textarea></form>
+	</div>
+	<script>
+//按钮样式
+var btns = document.querySelectorAll('.btn');
+ 
+	for (var i = 0;i<btns.length ;i++ ){
+		btns[i].onmouseover = function(){
+			this.style.boxShadow = "0 0 6px #999";
+		}
+		btns[i].onmousedown = function(){
+			this.style.background="#fb6";	
+		}
+		btns[i].onmouseup = function(){
+			this.style.boxShadow = "none";
+			this.style.background="#9fd";
+		}
+		
+		btns[i].onmouseout = function(){
+			this.style.boxShadow = "none";
+		}
+	
+	}
+//文本框样式
+original.onfocus = function(){
+	original.style.boxShadow = "0 0 10px #f9e";
+}
+original.onblur = function(){
+	original.style.boxShadow = "none";
+}
+result.onfocus = function(){
+	result.style.boxShadow = "0 0 10px #9fd";
+}
+result.onblur = function(){
+	result.style.boxShadow = "none";
+}
+//文本框自适应高度
+        
+//去掉除英文外文本
+	
+submit.onclick =function (){
+		var originals = document.getElementById("original").value;
+		var words = originals.match(/^([ \t]*\d+\.)?[ \t]*[a-zA-Z]+/mg);//找到数字序号和英文单词并返回
+		if(words){
+			for(var i = 0; i < words.length; i++){ words[i] = words[i].trim(); }//去掉多余空格
+			var wordc = words.join('\n');//加入换行符
+			document.getElementById("result").value=wordc.replace(/^.*\./mg,"");//去掉前缀数字
+		}
+	};
+//全选
+//var strongs = result.value;
+//selectAll.onclick = function(){
+//	var s = window.getSelection();
+//	if(s.rangeCount > 0) s.removeAllRanges();
+//	  var range = document.createRange();
+//	  range.selectNode(result);
+//	  s.addRange(range);
+//}
+//全选并复制
+ (function(){
+  	  'use strict';
+  	  document.body.addEventListener('click',copy,true);
+  	  function copy(e){
+  		  var 
+  		  t = e.target,
+  		  c = t.dataset.copytarget,
+  		  inp = (c?document.querySelector(c):null);
+  		  console.log(inp);
+  		  if(inp && inp.select){
+  			inp.select();
+  			try{
+  				document.execCommand('copy');
+  				inp.blur();
+  			}catch(err){
+  				alert('浏览器不支持本按钮功能');
+  			}
+  		  }
+  	  }
+  })();
+//清空输入框内容
+dele.onclick = function(){
+	original.value="";
+	this.style.background="#f9e";
+};
+
+	</script>
+ </body>
+</html>
