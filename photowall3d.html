@@ -179,12 +179,12 @@ textarea{
 <body>
 <div class="ui">
     <form action="" id="uiSet">
-        <div class="section"><textarea name="picUrl" id="picUrl" cols="30" rows="10" >images/1.jpg
-images/2.jpg
-images/3.jpg
-images/4.jpg
-images/5.jpg
-images/6.jpg</textarea>
+        <div class="section"><textarea name="picUrl" id="picUrl" cols="30" rows="10" >http://imgsrc.baidu.com/baike/abpic/item/8694a4c27d1ed21bec6bea2dad6eddc450da3f5c.jpg
+http://imgsrc.baidu.com/baike/abpic/item/48540923dd54564e88ce5908b2de9c82d1584f53.jpg
+http://imgsrc.baidu.com/baike/abpic/item/1ad5ad6eddc451dac704ab2bb6fd5266d116327b.jpg
+http://imgsrc.baidu.com/baike/abpic/item/730e0cf3d7ca7bcbb9587defbe096b63f724a8cb.jpg
+http://imgsrc.baidu.com/baike/abpic/item/9213b07eca80653862f66bc697dda144ac3482c3.jpg
+http://imgsrc.baidu.com/baike/abpic/item/37d3d539b6003af34b620285352ac65c1138b67f.jpg</textarea>
 		</div>
         <input type="number" class="section" id="picsize" value="128">
         <input type="number" class="section" id="stagesize" value="128">
@@ -265,7 +265,7 @@ images/6.jpg</textarea>
 		imports.onclick = function (){
 			var allUrl = picUrl.value;
 			//console.log(allUrl);
-			var urls = allUrl.match(/image\/?.+\.(jpg|jpe|jpeg|gif|png|bmp)/mg);//image/1.jpg http[s]?:\/\/?.+\.(jpg|jpe|jpeg|gif|png|bmp)
+			var urls = allUrl.match(/http[s]?:\/\/?.+\.(jpg|jpe|jpeg|gif|png|bmp)/mg);//image/1.jpg image\/?.+\.(jpg|jpe|jpeg|gif|png|bmp)
 			//console.log(urls);
 			console.log(urls.length);
 			container.innerHTML = "";
